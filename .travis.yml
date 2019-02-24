@@ -21,6 +21,7 @@ script:
 deploy:
   provider: script
   script:
+    # create images dockerhub
     docker push kikoken/api-climate;
     docker push registry.heroku.com/$HEROKU_APP_NAME/web;
     # heroku plugins:install heroku-docker
