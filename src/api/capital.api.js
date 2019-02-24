@@ -1,12 +1,9 @@
 import fetch from 'node-fetch'
 
-import path from 'path'
-import dotenv from 'dotenv';
-dotenv.config({ path: path.resolve('./app.env')});
-
+import { REST_COUNTRY } from '../config'
 class CapitalApi {
   constructor() {
-    this.uri = process.env.REST_COUNTRY
+    this.uri = REST_COUNTRY
   }
 
   async getCoordByName(country) {

@@ -1,8 +1,6 @@
 import fetch from 'node-fetch'
 
-import path from 'path'
-import dotenv from 'dotenv';
-dotenv.config({ path: path.resolve('./app.env')});
+import { DARKSKY_TOKEN, DARKSKY_URL} from '../config'
 
 class DarkSkyApi {
   constructor(_url_, _token_) {
@@ -19,4 +17,4 @@ class DarkSkyApi {
   }
 }
 
-export default new DarkSkyApi(process.env.DARKSKY_URL, process.env.DARKSKY_TOKEN)
+export default new DarkSkyApi(DARKSKY_URL, DARKSKY_TOKEN)

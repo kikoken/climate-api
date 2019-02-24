@@ -1,0 +1,5 @@
+export const GOOGLE_API_KEY='AIzaSyA3RcpmWbh8vKcet1mk2dmYdJPdok6VHls'
+export const GEOCODE_API='https://maps.googleapis.com/maps/api/geocode/json?latlng='
+export const REST_COUNTRY='https://restcountries.eu/rest/v2/'
+export const DARKSKY_TOKEN='f6f433ccdd900610359e5114cd0fcdee'
+export const DARKSKY_URL='https://api.darksky.net/forecast/'
