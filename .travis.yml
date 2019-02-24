@@ -9,7 +9,7 @@ before_install:
   - wget -qO- https://toolbelt.heroku.com/install.sh | sh
   # login to docker registries (dockerhub + heroku)
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker login -u _  --password=$HEROKU_PASSWORD registry.heroku.com
+  - docker login -u $HEROKU_PASSWORD  -p $HEROKU_PASSWORD registry.heroku.com
 install:
   - yarn install
 script:
