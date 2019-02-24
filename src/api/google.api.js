@@ -1,11 +1,16 @@
+import fetch from 'node-fetch'
+
+import path from 'path'
+import dotenv from 'dotenv';
+dotenv.config({ path: path.resolve('./app.env')});
+
 class GoogleApi {
   constructor() {
     this.uri = process.env.GEOCODE_API
   }
   async getCountryByCoords(coords) {
-    let response = await (await fetch(`${this.uri}${coords.lat},${coords.lng}&sensor=false&key=${process.env.GOOGLE_API_KEY}`)).json()
-    let address_components = response.results.address_components
-
+    let response = await (await fetch(`${this.uri}${coords}&sensor=false&key=${process.env.GOOGLE_API_KEY}`)).json()
+    let address_components = response.results[0].address_components
     let address_filter = address_components.filter(address_component => {
       return address_component.types.includes("country")
     })

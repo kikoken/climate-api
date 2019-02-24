@@ -26,8 +26,9 @@ class WheatherCtrl {
       let country = await this.geocodeApi.getCountryByCoords(_coords_)
       if(!country) return {}
 
-      let capital = this.capitalApi.getCoordByName(country)
+      let capital = await this.capitalApi.getCoordByName(country)
       let city = await this.wheatherApi.getByCoordsCity(capital)
+      
       this.client.setex(this.cacheKey, 3600, JSON.stringify({...city.data, capital}))
       return city
     } catch (error) {
