@@ -1,0 +1,19 @@
+sudo: required
+language: node_js
+node_js:
+  - "9"
+services:
+  - docker
+before_install:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+install:
+  - yarn install
+script:
+  - yarn build
+  - docker build -t kikoken/api-climate .
+
+deploy:
+  provider: script
+  script:
+    docker push kikoken/api-climate;
+  branch: master
