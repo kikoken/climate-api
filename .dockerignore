@@ -1,0 +1,11 @@
+.git
+.gitignore
+.yarn-error
+.lock
+.md
+.eslintignore
+.log
+Dockerfile
+docker-compose.yml
+node_modules
+build

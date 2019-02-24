@@ -1,0 +1,1 @@
+export { default as WheatherRoute } from './weather.route'

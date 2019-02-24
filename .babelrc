@@ -1,0 +1,17 @@
+{
+  "presets": [
+    "es2015",
+    "stage-0",
+    "env"
+  ],
+  "plugins": [
+    "inline-import",
+    "transform-runtime"
+  ],
+  "env":{
+    "development": {
+      "presets": ["env", "stage-0"],
+      "plugins": ["dynamic-import-node"]
+    }
+  }
+}

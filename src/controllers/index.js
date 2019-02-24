@@ -1,0 +1,1 @@
+export {default as WheatherCtrl } from './wheather.crtl'
