@@ -4,7 +4,7 @@ import bodyParser from 'body-parser'
 import { WheatherRoute } from './routes'
 
 const app = express()
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 8000
 
 app.use(bodyParser.json())
 app.use('/api', WheatherRoute)
