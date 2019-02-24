@@ -25,5 +25,6 @@ deploy:
     docker push kikoken/api-climate;
     docker push registry.heroku.com/$HEROKU_APP_NAME/web;
     # heroku plugins:install heroku-docker
-    heroku container:release web --app "$HEROKU_APP_NAME";
-  branch: master
+    heroku container:release web --app "$HEROKU_APP_NAME"
+  on:
+    branch: master
