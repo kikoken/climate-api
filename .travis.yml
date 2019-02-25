@@ -9,12 +9,11 @@ before_install:
   - wget -qO- https://toolbelt.heroku.com/install.sh | sh
   # login to docker registries (dockerhub + heroku)
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - echo "$HEROKU_PASSWORD" | docker login -u _ --password-stdin
+  - echo "$HEROKU_PASSWORD" | docker login -u _ --password-stdin registry.heroku.com
 install:
   - yarn install
 script:
   - yarn build
-  # build docker images 
   - docker build -t kikoken/api-climate .
   - docker tag kikoken/api-climate registry.heroku.com/$HEROKU_APP_NAME/web
 
@@ -24,7 +23,5 @@ deploy:
     # create images dockerhub
     docker push kikoken/api-climate;
     docker push registry.heroku.com/$HEROKU_APP_NAME/web;
-    # heroku plugins:install heroku-docker
     heroku container:release web --app "$HEROKU_APP_NAME"
-  on:
-    branch: master
+  branch: master
