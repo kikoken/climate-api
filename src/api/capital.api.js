@@ -1,9 +1,7 @@
 import fetch from 'node-fetch'
-
-import { REST_COUNTRY } from '../config'
 class CapitalApi {
   constructor() {
-    this.uri = REST_COUNTRY
+    this.uri = process.env.REST_COUNTRY
   }
 
   async getCoordByName(country) {

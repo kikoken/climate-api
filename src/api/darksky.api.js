@@ -1,7 +1,5 @@
 import fetch from 'node-fetch'
 
-import { DARKSKY_TOKEN, DARKSKY_URL} from '../config'
-
 class DarkSkyApi {
   constructor(_url_, _token_) {
     this.darksky = `${_url_}${_token_}`
@@ -17,4 +15,4 @@ class DarkSkyApi {
   }
 }
 
-export default new DarkSkyApi(DARKSKY_URL, DARKSKY_TOKEN)
+export default new DarkSkyApi(process.env.DARKSKY_URL, process.env.DARKSKY_TOKEN)
