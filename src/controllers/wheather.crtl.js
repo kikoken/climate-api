@@ -20,16 +20,17 @@ class WheatherCtrl {
 
   async getDataByCity(_coords_) {
     try {
-      let cacheCity = await this.getCache(this.cacheKey)
-      if(cacheCity) return JSON.parse(cacheCity)
-
+      
       let country = await this.geocodeApi.getCountryByCoords(_coords_)
       if(!country) return {}
-
+      
       let capital = await this.capitalApi.getCoordByName(country)
+      let cacheCity = await this.getCache(capital)
+      if(cacheCity) return JSON.parse(cacheCity)
+      
       let city = await this.wheatherApi.getByCoordsCity(capital)
       
-      this.client.setex(this.cacheKey, 3600, JSON.stringify({...city.data, capital}))
+      this.client.setex(capital, 3600, JSON.stringify({...city.data, capital}))
       return city
     } catch (error) {
       console.error('[ERROR_WHEATHER_CTRL]', error.message)
