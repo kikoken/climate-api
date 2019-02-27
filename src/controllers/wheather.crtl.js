@@ -29,8 +29,8 @@ class WheatherCtrl {
       
       let city = await this.wheatherApi.getByCoordsCity(capital)
       
-      this.client.setex(capital, 3600, JSON.stringify({...city.data, capital}))
-      return city
+      this.client.setex(capital, 3600, JSON.stringify({...city.data, capital: capital}))
+      return {...city.data, capital: capital}
     } catch (error) {
       console.error('[ERROR_WHEATHER_CTRL]', error.message)
     }    
