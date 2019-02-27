@@ -15,7 +15,6 @@ class WheatherCtrl {
     this.capitalApi = _capitalApi_
     this.client = _client_
     this.getCache = promisify(this.client.get).bind(this.client)
-    this.cacheKey = 'city'
   }
 
   async getDataByCity(_coords_) {
@@ -25,7 +24,7 @@ class WheatherCtrl {
       if(!country) return {}
       
       let capital = await this.capitalApi.getCoordByName(country)
-      let cacheCity = await this.getCache(capital)
+      let cacheCity = await this.getCache(`/${capital}`)
       if(cacheCity) return JSON.parse(cacheCity)
       
       let city = await this.wheatherApi.getByCoordsCity(capital)
