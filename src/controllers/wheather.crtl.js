@@ -24,13 +24,13 @@ class WheatherCtrl {
       if(!country) return {}
       
       let capital = await this.capitalApi.getCoordByName(country)
-      let cacheCity = await this.getCache(`/${capital}`)
+      let cacheCity = await this.getCache(`/${capital.name}`)
       if(cacheCity) return JSON.parse(cacheCity)
       
-      let city = await this.wheatherApi.getByCoordsCity(capital)
+      let city = await this.wheatherApi.getByCoordsCity(capital.coord)
       
-      this.client.setex(capital, 3600, JSON.stringify({...city.data, capital: capital}))
-      return {...city.data, capital: capital}
+      this.client.setex(`/${capital.name}`, 3600, JSON.stringify({...city.data, capital: capital.name}))
+      return {...city.data, capital: capital.name}
     } catch (error) {
       console.error('[ERROR_WHEATHER_CTRL]', error.message)
     }    

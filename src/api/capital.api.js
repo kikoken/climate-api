@@ -10,7 +10,7 @@ class CapitalApi {
     let responseCapital = await fetch(`${this.uri}capital/${dataCountry[0].capital}`)
     
     let data = await responseCapital.json()
-    return data[0].latlng.join(',')
+    return {name: dataCountry[0].capital , coord: data[0].latlng.join(',')}
   }
 }
 
